@@ -1,6 +1,5 @@
 package com.example.skyprocoursework22mastermind.service.impl;
 
-import com.example.skyprocoursework22mastermind.exception.QuestionIllegalArgumentException;
 import com.example.skyprocoursework22mastermind.model.Question;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collection;
-import java.util.Set;
 
 import static org.mockito.Mockito.*;
 
@@ -46,8 +44,6 @@ public class ExaminerServiceImplTest {
     @Test
     public void getQuestionsTest() {
 
-        when(javaQuestionService.getAll()).thenReturn(Set.of(javaQuestion1, javaQuestion2));
-        when(mathQuestionService.getAll()).thenReturn(Set.of(mathQuestion1, mathQuestion2));
         when(javaQuestionService.getRandomQuestion()).thenReturn(javaQuestion1);
         when(mathQuestionService.getRandomQuestion()).thenReturn(mathQuestion1);
 
@@ -61,10 +57,6 @@ public class ExaminerServiceImplTest {
 
     }
 
-    @Test
-    public void getQuestionsIllegalArgumentTest() {
-        Assertions.assertThatExceptionOfType(QuestionIllegalArgumentException.class).isThrownBy(() -> examinerService.getQuestions(2));
-    }
 
 
 

@@ -1,10 +1,8 @@
 package com.example.skyprocoursework22mastermind.service.impl;
 
-import com.example.skyprocoursework22mastermind.exception.QuestionNotFoundException;
+import com.example.skyprocoursework22mastermind.exception.MethodMathQuestionNotFoundException;
 import com.example.skyprocoursework22mastermind.model.Question;
-import com.example.skyprocoursework22mastermind.repository.QuestionRepository;
 import com.example.skyprocoursework22mastermind.service.QuestionService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -13,29 +11,20 @@ import java.util.Random;
 @Service
 public class MathQuestionService implements QuestionService {
 
-    private final QuestionRepository repository;
-
-    public MathQuestionService(@Qualifier("mathQuestionRepository") QuestionRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     public Question add(String question, String answer) {
-        return repository.add(question, answer);
+        throw new MethodMathQuestionNotFoundException();
     }
 
     @Override
     public Question remove(Question question) {
-        if (!repository.getAll().contains(question)) {
-            throw new QuestionNotFoundException();
-        }
-        repository.remove(question);
-        return question;
+        throw new MethodMathQuestionNotFoundException();
     }
 
     @Override
     public Collection<Question> getAll() {
-        return repository.getAll();
+        throw new MethodMathQuestionNotFoundException();
     }
 
     @Override
